@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>monday CRM para b+ca: Potencialize Suas Vendas</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Colors based on monday CRM (Aqua tones) and generic dark/light tones */
+        :root {
+            --color-monday-aqua-main: #00C2BF; /* Primary monday Aqua */
+            --color-monday-aqua-light: #66D9D9; /* Lighter monday Aqua */
+            --color-monday-aqua-dark: #009E9B; /* Darker monday Aqua */
+            --color-monday-aqua-pastel: #C9EEED; /* New pastel tone for hero background */
+            --color-dark-blue: #003366; /* Generic Dark Blue */
+            --color-light-gray: #F5F5F5; /* Generic Light Gray */
+            --color-text-dark: #374151; /* Neutral 800 */
+            --color-alest-bg: #28325C; /* Dark blue background for final slide */
+        }
+
+        .bg-gradient-monday {
+            background: linear-gradient(to right, var(--color-monday-aqua-main), var(--color-monday-aqua-dark));
+        }
+        .text-monday-aqua-main { color: var(--color-monday-aqua-main); }
+        .text-monday-aqua-light { color: var(--color-monday-aqua-light); }
+        .text-monday-aqua-dark { color: var(--color-monday-aqua-dark); }
+        .text-dark-blue { color: var(--color-dark-blue); }
+        .bg-light-gray { background-color: var(--color-light-gray); }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--color-text-dark);
+            /* Removed overflow: hidden and height: 100vh for scrollable document */
+        }
+
+        /* Slide specific styles - Adjusted for sequential display */
+        .slide {
+            height: 100vh; /* Each section acts as a full "page" */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            box-sizing: border-box;
+            /* Removed opacity and visibility transitions */
+            position: relative; /* Ensure it takes up space in the flow */
+            margin-bottom: 0; /* No space between "pages" */
+        }
+
+        /* Hero section background pattern and overlay for a modern feel */
+        .hero-pattern {
+            background-color: var(--color-monday-aqua-pastel);
+            position: relative;
+            z-index: 0;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1); /* Subtle dark overlay for text contrast, lighter */
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Added text shadow for better contrast on hero slide */
+        .text-shadow-md {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        /* Stronger text shadow for final slide */
+        .text-shadow-strong {
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Card-like structure for features with subtle transparency */
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.95); /* White with slight transparency */
+            backdrop-filter: blur(8px); /* More pronounced blur effect */
+            border: 1px solid rgba(0, 51, 102, 0.08); /* Lighter border */
+        }
+
+        /* Removed sidebar navigation styles as element is removed */
+        /* Removed navigation button styles as elements are removed */
+
+        /* Image/GIF placeholder styling */
+        .image-placeholder {
+            min-height: 250px; /* Ensures space even without image */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e0f2fe; /* Light blue background */
+            border: 1px dashed var(--color-monday-aqua-main);
+            color: var(--color-monday-aqua-main);
+            font-weight: 600;
+            text-align: center;
+            border-radius: 10px;
+            overflow: hidden; /* Ensure image doesn't spill */
+        }
+        .image-placeholder img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        /* Specific style for circular logo */
+        .circular-logo-container {
+            width: 80px; /* Further reduced size */
+            height: 80px; /* Further reduced size */
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white; /* Ensure white background for the circle */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .circular-logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ensure the image fits within the circle */
+        }
+
+        /* Confetti animation */
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        .confetti-particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--color-monday-aqua-main); /* Default color */
+            border-radius: 50%;
+            opacity: 0;
+            animation: confetti-fall 5s ease-in-out infinite;
+            pointer-events: none; /* Do not interfere with clicks */
+        }
+        /* Custom colors for confetti */
+        .confetti-red { background-color: #FF6B6B; }
+        .confetti-blue { background-color: #4ECDC4; }
+        .confetti-yellow { background-color: #FFE66D; }
+        .confetti-purple { background-color: #C792EA; }
+    </style>
+</head>
+<body class="bg-light-gray">
+
+    <!-- Removed Sidebar Navigation -->
+    <!-- Removed Navigation Buttons -->
+
+    <!-- Slides Container - No longer needed for interactive slide control, but keeps content grouped -->
+    <div class="slides-container">
+
+        <!-- Slide 1: Introdução ao monday CRM (Hero) -->
+        <section class="slide hero-pattern text-white">
+            <div class="hero-overlay"></div>
+            <div class="hero-content text-center max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight text-shadow-md">
+                    <span class="text-white">Potencialize Suas Vendas com</span> <span class="text-monday-aqua-light">monday</span> <span class="text-white">CRM para b+ca</span>
+                </h1>
+                <div class="flex flex-col items-center justify-center gap-6 mt-8">
+                    <img src="https://dapulse-res.cloudinary.com/image/upload/Generator_featured%20images/Home%20Page%20-%202022%20Rebrand/products/crm_main_logo.png" alt="Logo monday CRM" class="h-24 md:h-32 w-auto">
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Seus Desafios, Nossa Solução -->
+        <section class="slide bg-light-gray">
+            <div class="max-w-5xl mx-auto flex flex-col items-center gap-10 p-6 md:p-12 feature-card rounded-2xl shadow-2xl">
+                <div class="md:w-full">
+                    <h2 class="text-4xl font-bold text-dark-blue mb-6 text-center">
+                        <span class="text-monday-aqua-main">Seus Desafios,</span> Nossa Solução
+                    </h2>
+                    <div class="flex items-center justify-center gap-6 mb-8"> <!-- Logos Cliente + Parceiro -->
+                        <!-- Novo Logo da b+ca em formato circular -->
+                        <div class="circular-logo-container">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXika0ebimjuAPUKjtGvkszC_yzCI7up1Ys-RSSoXIr3J7pXaCkxnZd-0NKf-s6VukInw&usqp=CAU" alt="Logo b+ca">
+                        </div>
+                        <!-- Logo da Alest -->
+                        <img src="https://alest.com.br/wp-content/uploads/2018/12/Logo-Alest-340x104-1.png" alt="Logo Alest" class="h-10 md:h-12 w-auto">
+                    </div>
+                    <p class="text-xl leading-relaxed text-justify">
+                        No dinâmico ambiente de gestão de contas da b+ca, o monday CRM surge como a solução ideal para centralizar a comunicação, unificar o histórico do cliente e automatizar tarefas operacionais. Ele permite que sua equipe foque no relacionamento estratégico, superando desafios de crescimento e otimizando a visibilidade do pipeline.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Funcionalidades Exclusivas: Intro -->
+        <section class="slide bg-light-gray">
+            <div class="max-w-4xl mx-auto text-center p-6 md:p-12 feature-card rounded-2xl shadow-2xl">
+                <h2 class="text-4xl font-bold text-dark-blue mb-8">
+                    <span class="text-monday-aqua-dark">Funcionalidades Exclusivas:</span> O Poder do monday CRM
+                </h2>
+                <ul class="space-y-4 text-xl font-medium">
+                    <li><span class="text-monday-aqua-main">&#9733;</span> <strong>Enriquecimento de Dados CRM</strong></li>
+                    <li><span class="text-monday-aqua-main">&#9733;</span> <strong>Widgets de Dashboards Estratégicos</strong></li>
+                    <li><span class="text-monday-aqua-main">&#9733;</span> <strong>Criar Contatos Automaticamente</strong></li>
+                    <li><span class="text-monday-aqua-main">&#9733;</span> <strong>Sequências</strong></li>
+                    <li><span class="text-monday-aqua-main">&#9733;</span> <strong>Modelos de E-mail Compartilhados</strong></li>
+                    <li><span class="text-monday-aqua-main">&#9733;</span> <strong>Caixa de Entrada de E-mail Compartilhada</strong></li>
+                    <li><span class="text-monday-aqua-main">&#9733;</span> <strong>Campanhas de E-mail e Envio em Massa</strong></li>
+                    <li><span class="text-monday-aqua-main">&#9733;</span> <strong>Extensão do monday CRM no Chrome</strong></li>
+                    <li><span class="text-monday-aqua-main">&#9733;</span> <strong>Mudanças de Status Condicionais</strong></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Slide 4: Funcionalidade Exclusiva: Enriquecimento de Dados CRM -->
+        <section class="slide bg-light-gray">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center gap-10 p-6 feature-card rounded-2xl shadow-xl">
+                <div class="md:w-1/2">
+                    <h2 class="text-4xl font-bold text-dark-blue mb-4 text-center">
+                        <span class="text-monday-aqua-main">Enriquecimento de Dados CRM</span>
+                    </h2>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        É uma ferramenta que busca automaticamente informações públicas sobre as empresas dos seus contatos e preenche para você.
+                    </p>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        <strong class="text-monday-aqua-main">Vantagem:</strong> Economiza um tempo enorme de pesquisa manual. Com apenas o domínio (site) da empresa, ele pode trazer informações como número de funcionários e setor, local e descrição da empresa, dando a vocês um contexto valioso sobre o cliente sem sair do monday.com.
+                    </p>
+                </div>
+                <div class="md:w-1/2 p-4">
+                    <div class="image-placeholder">
+                        <img src="https://support.monday.com/hc/article_attachments/17036326367378" alt="Imagem de Enriquecimento de Dados CRM">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Funcionalidade Exclusiva: Widget Gráfico de Funil -->
+        <section class="slide bg-light-gray">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 p-6 feature-card rounded-2xl shadow-xl">
+                <div class="md:w-1/2">
+                    <h2 class="text-4xl font-bold text-dark-blue mb-4 text-center">
+                        <span class="text-monday-aqua-main">Widget Gráfico de Funil</span>
+                    </h2>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        É um gráfico que mostra visualmente as etapas de um processo e quantos clientes ou projetos passam de uma fase para outra.
+                    </p>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        <strong class="text-monday-aqua-main">Vantagem:</strong> Ajuda a identificar gargalos. Embora seja clássico para vendas, vocês podem usar para visualizar a jornada de um cliente, um processo de onboarding, ou qualquer fluxo com etapas sequenciais para ver onde os processos estão "emperrando".
+                    </p>
+                </div>
+                <div class="md:w-1/2 p-4">
+                    <div class="image-placeholder">
+                        <img src="https://support.monday.com/hc/article_attachments/8909618993554" alt="Imagem de Widget Gráfico de Funil">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Funcionalidade Exclusiva: Widget de Classificação -->
+        <section class="slide bg-light-gray">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center gap-10 p-6 feature-card rounded-2xl shadow-xl">
+                <div class="md:w-1/2">
+                    <h2 class="text-4xl font-bold text-dark-blue mb-4 text-center">
+                        <span class="text-monday-aqua-main">Widget de Classificação</span>
+                    </h2>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        É um "placar" que mostra o desempenho da equipe com base em métricas que vocês definem.
+                    </p>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        <strong class="text-monday-aqua-main">Vantagem:</strong> Gera visibilidade sobre a performance e pode incentivar uma competição saudável. Pode ser usado para ver qual membro da equipe concluiu mais tarefas, resolveu mais solicitações de clientes ou teve as melhores avaliações de satisfação no mês.
+                    </p>
+                </div>
+                <div class="md:w-1/2 p-4">
+                    <div class="image-placeholder">
+                        <img src="https://support.monday.com/hc/article_attachments/13206965014546" alt="Imagem de Widget de Classificação">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Funcionalidade Exclusiva: Visualização de Pipeline de Vendas -->
+        <section class="slide bg-light-gray">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 p-6 feature-card rounded-2xl shadow-xl">
+                <div class="md:w-1/2">
+                    <h2 class="text-4xl font-bold text-dark-blue mb-4 text-center">
+                        <span class="text-monday-aqua-main">Visualização de Pipeline de Vendas</span>
+                    </h2>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        É uma visualização no estilo de "post-its" (Kanban) onde você pode arrastar e soltar seus projetos ou clientes entre as colunas que representam as etapas do processo.
+                    </p>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        <strong class="text-monday-aqua-main">Vantagem:</strong> É uma forma muito visual, interativa e intuitiva de gerenciar o andamento dos processos, ideal para reuniões de status e para ter uma visão rápida do que está acontecendo.
+                    </p>
+                </div>
+                <div class="md:w-1/2 p-4">
+                    <div class="image-placeholder">
+                        <img src="https://support.monday.com/hc/article_attachments/19531348473490" alt="Imagem de Visualização de Pipeline de Vendas">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Funcionalidade Exclusiva: Criar Contatos Automaticamente -->
+        <section class="slide bg-light-gray">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 p-6 feature-card rounded-2xl shadow-xl">
+                <div class="md:w-1/2">
+                    <h2 class="text-4xl font-bold text-dark-blue mb-4 text-center">
+                        <span class="text-monday-aqua-main">Criar Contatos Automaticamente</span>
+                    </h2>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        Cadastra um novo contato automaticamente quando você envia um e-mail para alguém que ainda não está na sua base de dados.
+                    </p>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        <strong class="text-monday-aqua-main">Vantagem:</strong> Mantém sua lista de contatos sempre atualizada sem nenhum esforço manual.
+                    </p>
+                </div>
+                <div class="md:w-1/2 p-4">
+                    <div class="image-placeholder">
+                        <img src="https://support.monday.com/hc/article_attachments/17036461928210" alt="Imagem de Criação Automática de Contatos">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Funcionalidade Exclusiva: Sequências -->
+        <section class="slide bg-light-gray">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center gap-10 p-6 feature-card rounded-2xl shadow-xl">
+                <div class="md:w-1/2">
+                    <h2 class="text-4xl font-bold text-dark-blue mb-4 text-center">
+                        <span class="text-monday-aqua-main">Sequências</span>
+                    </h2>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        Permite criar "trilhas" de comunicação e tarefas automáticas para seus clientes.
+                    </p>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        <strong class="text-monday-aqua-main">Vantagem:</strong> Automatiza o acompanhamento. Exemplo: você pode criar uma sequência de boas-vindas para um novo cliente. O sistema envia um e-mail. Se ele não responder em 3 dias, o sistema cria uma tarefa para o responsável ligar. Isso garante que nenhum cliente fique "esquecido".
+                    </p>
+                </div>
+                <div class="md:w-1/2 p-4">
+                    <div class="image-placeholder">
+                        <img src="https://support.monday.com/hc/article_attachments/22164055778194" alt="Imagem de Sequências">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11: Funcionalidade Exclusiva: Modelos de E-mail Compartilhados -->
+        <section class="slide bg-light-gray">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 p-6 feature-card rounded-2xl shadow-xl">
+                <div class="md:w-1/2">
+                    <h2 class="text-4xl font-bold text-dark-blue mb-4 text-center">
+                        <span class="text-monday-aqua-main">Modelos de E-mail Compartilhados</span>
+                    </h2>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        Permite criar modelos de e-mail padronizados (templates) e compartilhá-los com toda a equipe.
+                    </p>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        <strong class="text-monday-aqua-main">Vantagem:</strong> Garante consistência na comunicação e economiza um tempo enorme. Em vez de cada um escrever um e-mail de follow-up, todos usam o mesmo modelo, que pode ser preenchido com as informações do cliente automaticamente.
+                    </p>
+                </div>
+                <div class="md:w-1/2 p-4">
+                    <div class="image-placeholder">
+                        <img src="https://support.monday.com/hc/article_attachments/9603564208914" alt="Imagem de Modelos de E-mail Compartilhados">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 12: Funcionalidade Exclusiva: Caixa de Entrada de E-mail Compartilhada -->
+        <section class="slide bg-light-gray">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center gap-10 p-6 feature-card rounded-2xl shadow-xl">
+                <div class="md:w-1/2">
+                    <h2 class="text-4xl font-bold text-dark-blue mb-4 text-center">
+                        <span class="text-monday-aqua-main">Caixa de Entrada de E-mail Compartilhada</span>
+                    </h2>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        Permite que várias pessoas da equipe acessem e respondam e-mails de uma caixa de entrada comum (ex: contato@bmaisca.com.br) de dentro do monday.com.
+                    </p>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        <strong class="text-monday-aqua-main">Vantagem:</strong> Centraliza a comunicação. Qualquer pessoa do time de atendimento ou operações pode ver o que foi conversado com um cliente e dar continuidade ao atendimento, sem depender de uma única pessoa.
+                    </p>
+                </div>
+                <div class="md:w-1/2 p-4">
+                    <div class="image-placeholder">
+                        <img src="https://support.monday.com/hc/article_attachments/25878362494354" alt="Imagem de Caixa de Entrada de E-mail Compartilhada">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 13: Funcionalidade Exclusiva: Campanhas de E-mail e Envio em Massa -->
+        <section class="slide bg-light-gray">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 p-6 feature-card rounded-2xl shadow-xl">
+                <div class="md:w-1/2">
+                    <h2 class="text-4xl font-bold text-dark-blue mb-4 text-center">
+                        <span class="text-monday-aqua-main">Campanhas de E-mail e Envio em Massa</span>
+                    </h2>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        Permite enviar um mesmo e-mail para vários contatos de uma só vez, e acompanhar quem abriu ou clicou.
+                    </p>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        <strong class="text-monday-aqua-main">Vantagem:</strong> Perfeito para comunicar novidades, atualizações importantes ou enviar materiais para um grupo de clientes sem precisar fazer isso um por um.
+                    </p>
+                </div>
+                <div class="md:w-1/2 p-4">
+                    <div class="image-placeholder">
+                        <img src="https://support.monday.com/hc/article_attachments/17035273405458" alt="Imagem de Campanhas de E-mail e Envio em Massa">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 14: Extensão do monday CRM no Chrome -->
+        <section class="slide bg-light-gray">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center gap-10 p-6 feature-card rounded-2xl shadow-xl">
+                <div class="md:w-1/2">
+                    <h2 class="text-4xl font-bold text-dark-blue mb-4 text-center">
+                        <span class="text-monday-aqua-main">Extensão do monday CRM no Chrome</span>
+                    </h2>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        É uma extensão para o navegador Chrome que permite capturar informações diretamente do Gmail.
+                    </p>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        <strong class="text-monday-aqua-main">Vantagem:</strong> Agiliza a criação de novos contatos e leads no monday CRM, eliminando a necessidade de copiar e colar dados manualmente. Isso otimiza o fluxo de trabalho e garante que nenhuma oportunidade seja perdida.
+                    </p>
+                </div>
+                <div class="md:w-1/2 p-4">
+                    <div class="image-placeholder">
+                        <img src="https://support.monday.com/hc/article_attachments/24469804667666" alt="Imagem da Extensão monday CRM no Chrome">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 15: Mudanças de Status Condicionais -->
+        <section class="slide bg-light-gray">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 p-6 feature-card rounded-2xl shadow-xl">
+                <div class="md:w-1/2">
+                    <h2 class="text-4xl font-bold text-dark-blue mb-4 text-center">
+                        <span class="text-monday-aqua-main">Mudanças de Status Condicionais</span>
+                    </h2>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        É uma regra que obriga o preenchimento de campos importantes antes de permitir a mudança de um status.
+                    </p>
+                    <p class="text-xl leading-relaxed mb-6 text-justify">
+                        <strong class="text-monday-aqua-main">Vantagem:</strong> Garante que seus processos sejam seguidos à risca. Por exemplo, ninguém conseguiria mover um projeto para "Entregue" sem antes anexar o link do arquivo final ou preencher as horas gastas. Isso aumenta a qualidade e a rastreabilidade da informação.
+                    </p>
+                </div>
+                <div class="md:w-1/2 p-4">
+                    <div class="image-placeholder">
+                        <img src="https://support.monday.com/hc/article_attachments/17033779923602" alt="Imagem de Mudanças de Status Condicionais">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 16: Dúvidas e Próximos Passos -->
+        <section class="slide bg-light-gray">
+            <div class="max-w-4xl mx-auto text-center p-6 md:p-12 feature-card rounded-2xl shadow-2xl">
+                <h2 class="text-4xl font-bold text-dark-blue mb-8">
+                    <span class="text-monday-aqua-dark">Próximos Passos:</span> Transforme o futuro das vendas na b+ca
+                </h2>
+                <p class="text-xl leading-relaxed mb-8 text-justify mx-auto max-w-2xl">
+                    O monday CRM é a ferramenta que seu time de vendas precisa para alcançar o próximo nível de eficiência e sucesso. Estamos prontos para customizar essa experiência para a b+ca.
+                </p>
+                <h3 class="text-3xl font-bold mt-12 text-monday-aqua-main">Dúvidas?</h3>
+                <p class="text-lg text-gray-600 mt-2">Sua oportunidade de explorar mais a fundo e sanar todas as dúvidas.</p>
+            </div>
+        </section>
+
+        <!-- Slide 17: O que veremos na prática (Agenda dos Quadros - Agora na prática real) -->
+        <section class="slide bg-light-gray">
+            <div class="max-w-4xl mx-auto text-center p-6 md:p-12 feature-card rounded-2xl shadow-2xl">
+                <h2 class="text-4xl font-bold text-dark-blue mb-8">
+                    <span class="text-monday-aqua-dark">Na prática:</span> monday CRM em ação
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left mx-auto max-w-lg">
+                    <ul class="space-y-4 text-xl font-medium mx-auto">
+                        <li><span class="text-monday-aqua-main">&#10003;</span> <strong>Quadro de Leads</strong></li>
+                        <li><span class="text-monday-aqua-main">&#10003;</span> <strong>Quadro de Contatos</strong></li>
+                        <li><span class="text-monday-aqua-main">&#10003;</span> <strong>Quadro de Contas</strong></li>
+                        <li><span class="text-monday-aqua-main">&#10003;</span> <strong>Quadro de Negócios</strong></li>
+                        <li><span class="text-monday-aqua-main">&#10003;</span> <strong>Quadro de Atividades</strong></li>
+                    </ul>
+                    <ul class="space-y-4 text-xl font-medium mx-auto">
+                        <li><span class="text-monday-aqua-main">&#10003;</span> <strong>Emails & Activities</strong></li>
+                        <li><span class="text-monday-aqua-main">&#10003;</span> <strong>Sequences</strong></li>
+                        <li><span class="text-monday-aqua-main">&#10003;</span> <strong>Products & Services</strong></li>
+                        <li><span class="text-monday-aqua-main">&#10003;</span> <strong>Quotes & Invoices</strong></li>
+                    </ul>
+                </div>
+                <p class="text-lg text-gray-600 mt-8 italic">Pronto para ver o monday CRM em ação?</p>
+            </div>
+        </section>
+
+        <!-- Slide 18: Final - Feito! -->
+        <section class="slide hero-pattern text-white">
+            <div class="hero-overlay"></div>
+            <div class="hero-content text-center w-full h-full flex flex-col justify-center items-center">
+                <!-- Main "Feito!" and Email content (Centered) -->
+                <div class="text-center">
+                    <h1 class="text-6xl md:text-8xl font-bold mb-4 text-shadow-strong text-white">Feito!</h1>
+                    <p class="text-lg md:text-xl font-semibold text-shadow-strong text-white">gabrielle.alves@alest.com.br</p>
+                </div>
+
+                <!-- Logos in bottom-left corner with padding -->
+                <div class="absolute bottom-8 left-8 flex flex-col items-start gap-4 p-4">
+                    <img src="https://alest.com.br/wp-content/uploads/2018/12/Logo-Alest-340x104-1.png" alt="Logo Alest" class="h-10 w-auto">
+                    <img src="https://workflowmagic.co/wp-content/uploads/2024/07/Monday-Platinum-Partner-Logo-Transparent-BG.png" alt="Logo monday.com Platinum Partner" class="h-12 w-auto">
+                </div>
+
+                <!-- Confetti Particles (dynamic creation via JS for better control) -->
+                <div id="confetti-container" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Confetti effect setup - Simplified to run once on load
+            const confettiContainer = document.getElementById('confetti-container');
+            const confettiColors = [
+                'var(--color-monday-aqua-main)',
+                'var(--color-monday-aqua-light)',
+                'var(--color-monday-aqua-dark)',
+                '#FFD700', // Gold
+                '#FF69B4', // Hot Pink
+                '#ADFF2F'  // GreenYellow
+            ];
+
+            function createConfetti() {
+                if (!confettiContainer) return;
+
+                for (let i = 0; i < 70; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('confetti-particle');
+                    
+                    particle.style.top = `${-20 + Math.random() * 10}vh`;
+                    particle.style.left = `${Math.random() * 100}vw`;
+                    
+                    particle.style.animationName = 'confetti-fall';
+                    particle.style.animationDuration = `${5 + Math.random() * 3}s`;
+                    particle.style.animationDelay = `${Math.random() * 3}s`;
+                    particle.style.animationIterationCount = 'infinite';
+                    particle.style.animationTimingFunction = 'ease-in-out';
+                    
+                    particle.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+                    particle.style.width = `${Math.random() * 8 + 5}px`;
+                    particle.style.height = `${Math.random() * 8 + 5}px`;
+                    particle.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+                    confettiContainer.appendChild(particle);
+                }
+            }
+
+            // Trigger confetti when the page loads
+            createConfetti();
+        });
+    </script>
+</body>
+</html>
